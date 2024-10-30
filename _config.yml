@@ -13,7 +13,7 @@
 title: My website
 
 # Your name to show in the footer
-author: Some Person
+author: Aditya Khambete
 
 ###############################################
 # --- List of links in the navigation bar --- #
@@ -45,17 +45,13 @@ round-avatar: true
 # You can change the order that they show up on the page by changing the order here.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
-  email: "someone@example.com"
   rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  facebook: deanattali
-  github: daattali
-  twitter: daattali
-  patreon: DeanAttali
-  youtube: "@daattali"
-  whatsapp: 15551212
+  github: AdityaK1729
+  twitter: AdiKhambete
+  youtube: "@IJustLikeMath"
 #  medium: yourname
 #  reddit: yourname or r/yoursubreddit
-#  linkedin: daattali
+  linkedin: adityakhambeteiitb
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
