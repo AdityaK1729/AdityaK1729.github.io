@@ -14,7 +14,7 @@ layout: null
     <atom:link href="{{ 'feed.xml' | absolute_url }}" rel="self" type="application/rss+xml" />
     {% assign excerpt_length = site.excerpt_length | default: 50 %}
     {% for post in site.posts limit:20 %}
-<!--       <item>
+      <item>
         <title>{{ post.title | strip_html | xml_escape }}</title>
         <description>
           {% if post.subtitle %}{{ post.subtitle | strip_html | xml_escape }} - {% endif %}
@@ -24,6 +24,6 @@ layout: null
         <link>{{ post.url | absolute_url }}</link>
         <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
       </item>
-    {% endfor %} -->
+    {% endfor %} 
   </channel>
 </rss>
