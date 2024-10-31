@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: page
 title: Aditya Khambete
 subtitle: Nothing to see here 
 ---
