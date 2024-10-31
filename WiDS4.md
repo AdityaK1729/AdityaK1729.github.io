@@ -1,3 +1,9 @@
+---
+layout: page
+title: WiDS 4.0
+subtitle: Probability Based IPL Simulator
+---
+
 # Probability Based IPL Simulator
 
 We will create an IPL simulator model similar to how FIFA/EAFC simulates football games. We will use existing datasets to create a probability distribution based on different parameters, and using this new data, we will make a prediction for who wins IPL 2025.
