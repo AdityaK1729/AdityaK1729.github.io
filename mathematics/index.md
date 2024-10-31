@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: page
 title: Math Stuff
 subtitle: Nothing to see here 
 ---
