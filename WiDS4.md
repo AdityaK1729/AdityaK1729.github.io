@@ -17,7 +17,8 @@ For week 1, we will start with some basics of Python and a few libraries. If you
 
 If you are already familiar with python, you might play around and explore a bit of the dataset (which you can find below on this page). 
 
-Roughly what we are going to do is analyse each player in the dataset, that how he score runs, and the exact probability distribution on each ball, then we will run the simulation bowler against the batsman (based on the exact team matchup), and based on the points table and playoffs, we will predict the winner.
+Roughly what we are going to do is analyse each player in the dataset, that how he score runs, and the exact probability distribution on each ball, then we will run the simulation bowler against the batsman (based on the exact team matchup), and based on the points table and playoffs, we will predict the winner. You can find a really basic version of the idea [here](https://github.com/AdityaK1729/IPLProbSimulator).
+
 Soon, I will post an assignment based on the above concepts, which will be a mandatory requirement for certification, as I don't want this to be just one-day coding project, so I sincerely request you to all the above-mentioned tasks this week only.
 
 ## Dataset
