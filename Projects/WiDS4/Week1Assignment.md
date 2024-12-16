@@ -3,7 +3,7 @@ layout: page
 title: Week 1 Assignment
 subtitle: why do you need a subtitle
 ---
-
+Note: Assignment Deadline is 19th December 11:59 PM, so please do it before that
 ## The Problem Statement
 The thing which we are ultimately going to do is make a logic for game by game simulation, and run a loop of it for 70 games of the league phase, so for week 1 this is what we are going to do right now, so here are the details of what exactly you need to do: (use jupyter notebook/google colab for easy coding, if you dont know how to use, follow [this tutorial](https://www.youtube.com/watch?v=5pf0_bpNbkw)
 1. Import the dataset, from the dataset, take schedule of 2024 season, we will use this schedule as a reference.
