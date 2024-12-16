@@ -21,7 +21,7 @@ Roughly what we are going to do is analyse each player in the dataset, that how 
 
 Soon, I will post an assignment based on the above concepts, which will be a mandatory requirement for certification, as I don't want this to be just one-day coding project, so I sincerely request you to all the above-mentioned tasks this week only.
 ### Week 1 Assignment
-Find it (here)[https://adityak1729.github.io/Projects/WiDS4/Week1Assignment/]
+Find it [here](https://adityak1729.github.io/Projects/WiDS4/Week1Assignment/)
 ## Dataset
 Here is the dataset 
 [IPL 2024 Ball-by-Ball Dataset](https://www.kaggle.com/datasets/sahiltailor/ipl-2024-ball-by-ball-dataset). Credits to Kaggle user [Sahil Tailor](https://www.kaggle.com/sahiltailor) for the dataset.
