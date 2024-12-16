@@ -14,3 +14,11 @@ The thing which we are ultimately going to do is make a logic for game by game s
 NOTE: For random, use any seed, but just make sure to write the seed at the beginning of the notebook as a comment or so, just dont have non deterministic seed, predeclare it, so that even on running again code gives same output. (I have put it in the form as well)
 Submit your assignment [here](https://forms.gle/wmLKH8JGTd5bmt5s6). Upload the annotated notebook to github, and hence share the link to github repo, or just directly share the google colab link, whatever you wish. What I would suggest is to create and mantain a github repo, so that it will be easier for you to look at the complete project at one place, whenever you come back at it.
 Feel free to DM me over whatsapp for any issue you face, Happy Coding!
+
+### Footnote: IPL Playoff Format
+- Qualifier 1: Position 1 vs Position 2
+- Eliminator: Position 3 vs Position 4
+- Qualifier 2: Winner Eliminator vs Loser Qualifier 1
+- Final: Winner Qualifier 1 vs Winner Qualifier 2
+
+Break ties here using better position in league phase
