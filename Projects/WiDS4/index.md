@@ -50,7 +50,8 @@ $$ NRR=\frac{Total Runs Scored Throughout Season}{Overs Batted Throughout Season
 Note: We consider all out to be 20 overs bowled/batted by the respective teams, regardless of how quick you were bowled out.  
 I would recommend to use NRR only, as its not something too hard to implement, but still if you find it too hard, the thing you might do is just simulate each game till the full 20 overs, irrespective of whether the team won already (We anyways consider all out to be 20 overs batted only as above mentioned), and then just use the score difference logic you used in week 1 assignment.  
 For the schedule just use the first 70 columns (so that you dont include the playoffs) of the matches.csv file from the dataset for the league games (just like you did in week 1 assignment). Now once this is done, the thing you need to do is just use the old code from week 1 assignment and based on that simulate the whole tournament. That's it, you have successfully completed the project.  
-{: .box-note}
+
+{: .box-warning}
 As I said in the week 1 assignment, use constant seed for all the random simulations, as that makes it a lot easier.
 
 ## Week 4
