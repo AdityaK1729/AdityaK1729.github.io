@@ -956,6 +956,7 @@ pre {
   border-radius: 0.3125rem 0.1875rem 0.1875rem 0.3125rem;
   word-wrap: break-word;
   width: 100%;
+  text-color: #202020
 }
 
 .box-note {
