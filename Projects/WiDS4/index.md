@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: WiDS 4.0
 subtitle: Probability-Based IPL Simulator
 mathjax: true
