@@ -24,6 +24,7 @@ navbar-links:
   Projects: 
     - WiDS: "/Projects/WiDS4
   Mathematics: 
+    - Nothing Yet: "/404.html"
 ################
 # --- Logo --- #
 ################
