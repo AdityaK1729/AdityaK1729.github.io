@@ -39,6 +39,7 @@ Once we have the above dataset ready, we are ready to find what a match would lo
 - For simplicity, consider only 1 batsman is at the crease for 1 over, and it alternates between the overs, and changes on fall of wicket, this is to make the simulation process easier.
 - Now, to simulate a batsman vs bowler matchup, just use the batting dataset of batter, and bowling dataset of bowler, and to simulate the matchup, use those datasets to make a combined dataset, and with the weights of the combined dataset, simulate each bowl. To combine dataset, an easy idea might be to just add all the corresponding values of the dataset, and make that the combined dataset, this algorithm takes the experience into account as well.
 Thats it, repeat this for 20 overs, then change the team, and do this till target is achieved/10 wickets fall down/20 overs are done.
+
 ### Season Simulation
 This is the easy bit, now there are some choices you need to make here, firstly do you want to update the dataset of players each game on their performance, secondly are you comfortable handling the net run rate calculations, etc. Brownie points if you track other data such as orange cap/purple cap (most runs and wickets resp.) also. Now for NRR calculations used for tiebreaks, here is the formula-  
 $$NRR=\frac{Total Runs Scored Throughout Season}{Overs Batted Throughout Season}-\frac{Total Runs Conceded Throughout Season}{Overs Bowled Throughout Season}$$  
