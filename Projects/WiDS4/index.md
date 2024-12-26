@@ -48,7 +48,7 @@ Thats it, repeat this for 20 overs, then change the team, and do this till targe
 This is the easy bit, now there are some choices you need to make here, firstly do you want to update the dataset of players each game on their performance, secondly are you comfortable handling the net run rate calculations, etc. Brownie points if you track other data such as orange cap/purple cap (most runs and wickets resp.) also. Now for NRR calculations used for tiebreaks, here is the formula-  
 
 {: .box-formula}
-$$ NRR=\frac{Total Runs Scored Throughout Season}{Overs Batted Throughout Season}-\frac{Total Runs Conceded Throughout Season}{Overs Bowled Throughout Season} $$  
+$$ NRR=\frac{Total Runs Scored Throughout Season}{Overs Batted Throughout Season}$$ $$-$$ $$\frac{Total Runs Conceded Throughout Season}{Overs Bowled Throughout Season} $$  
 
 {: .box-note}
 **Note** : We consider all out to be 20 overs bowled/batted by the respective teams, regardless of how quick you were bowled out.  
