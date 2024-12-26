@@ -11,13 +11,12 @@ layout: null
   --link-col: {{ site.link-col | default: "#FF7500" }};
   --hover-col: {{ site.hover-col | default: "#FF7A5E" }};
   --navbar-col: {{ site.navbar-col | default: "#151515" }};
-  --navbar-text-col: {{ site.navbar-text-col | default: "#BFBFBF" }};
+  --navbar-text-col: {{ site.navbar-text-col | default: "#404040" }};
   --navbar-border-col: {{ site.navbar-border-col | default: "#222222" }};
   --footer-col: {{ site.footer-col | default: "#151515" }};
   --footer-text-col: {{ site.footer-text-col | default: "#888888" }};
-  --footer-link-col: {{ site.footer-link-col | default: "#BFBFBF" }};
+  --footer-link-col: {{ site.footer-link-col | default: "#51a4a6" }};
   --footer-hover-col: {{ site.footer-hover-col | default: "#FF7A5E" }};
-}
 
   /* common CSS variables */
   --body-font: 'Lora', 'Times New Roman', serif;
