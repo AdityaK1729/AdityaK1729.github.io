@@ -22,8 +22,8 @@ author: Aditya Khambete
 navbar-links:
   About Me: "aboutme"
   Projects: 
-    - WiDS: "/Projects/WiDS4
-  Mathematics: 
+    - WiDS: "/Projects/WiDS4"
+  Mathematics: "Mathematics"
     - Nothing Yet: "/404.html"
 ################
 # --- Logo --- #
