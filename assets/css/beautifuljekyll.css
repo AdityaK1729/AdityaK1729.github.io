@@ -947,6 +947,7 @@ pre {
 .box-note,
 .box-warning,
 .box-error,
+.box-formula
 .box-success {
   padding: 0.9375rem 0.9375rem 0.9375rem 0.625rem;
   margin: 1.25rem 1.25rem 1.25rem 0.3125rem;
@@ -959,7 +960,10 @@ pre {
   background-color: #eee;
   border-left-color: #2980b9;
 }
-
+.box-formula{
+  background-color: #e8f5e9;
+  border-left-color: #2ecc71;
+}
 .box-warning {
   background-color: #fdf5d4;
   border-left-color: #f1c40f;
