@@ -22,13 +22,14 @@ author: Aditya Khambete
 navbar-links:
   About Me: "aboutme"
   Projects: 
-    - WiDS: "/Projects/WiDS4"
+    - WiDS: "Projects/WiDS4"
   Mathematics: "Mathematics"
-    - Nothing Yet: "/404.html"
+    - Nothing Yet: "404.html"
+  
 ################
 # --- Logo --- #
 ################
-theme: jekyll-theme-hacker
+# theme: jekyll-theme-hacker
 # Image to show in the navigation bar - works best with a square image
 # Remove this parameter if you don't want an image in the navbar
 # avatar: "/assets/img/avatar-icon.png"
@@ -110,7 +111,7 @@ feed_show_excerpt: false
 feed_show_tags: false
 
 # Add a search button to the navbar
-post_search: true
+post_search: false
 
 # Add a button in the footer to edit the current page. Only works if your website is hosted on GitHub
 # edit_page_button: true
