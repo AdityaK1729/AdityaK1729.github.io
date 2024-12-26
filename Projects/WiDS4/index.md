@@ -6,7 +6,7 @@ mathjax: true
 gh-repo: AdityaK1729/AdityaK1729.github.io
 gh-batch: [star, fork, follow]
 author: Aditya Khambete
-date: 20241226
+date: 2024-12-26
 ---
 
 # Probability Based IPL Simulator
