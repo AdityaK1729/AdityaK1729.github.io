@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: Seeing what all can I do
 subtitle:  I have no Idea
 comments: true
