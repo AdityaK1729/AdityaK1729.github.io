@@ -132,15 +132,15 @@ keywords: "Aditya,Aditya Khambete, IIT Bombay, IITB BS Maths, BS Maths, Mathemat
 
 page-col: "#000000"
 text-col: "#BFBFBF"
-link-col: "#FF7500"
-hover-col: "#FF7A5E"
-navbar-col: "#228B22"
-navbar-text-col: "#ccc"
+link-col: "#2A482A"
+hover-col: "#2A482A"
+navbar-col: "#2A482A"
+navbar-text-col: "#F0FAF0"
 navbar-border-col: "#C1FFC1"
 footer-col: "#151515"
 footer-text-col: "#888888"
-footer-link-col: "#51a4a6"
-footer-hover-col: "#FF7A5E"
+footer-link-col: "#2A482A"
+footer-hover-col: "#2A482A"
 
 # Alternatively, the navbar, footer, and page background can be set to an image
 # instead of colour
