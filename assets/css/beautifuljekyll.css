@@ -956,12 +956,13 @@ pre {
   border-radius: 0.3125rem 0.1875rem 0.1875rem 0.3125rem;
   word-wrap: break-word;
   width: 100%;
-  text-color: #202020
+  color: #202020
 }
 
 .box-note {
   background-color: #eee;
   border-left-color: #2980b9;
+  color: #000
 }
 .box-formula{
   background-color: #e8f5e9;
