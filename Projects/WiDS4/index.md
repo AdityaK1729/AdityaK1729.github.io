@@ -22,6 +22,9 @@ Roughly what we are going to do is analyse each player in the dataset, that how 
 Soon, I will post an assignment based on the above concepts, which will be a mandatory requirement for certification, as I don't want this to be just one-day coding project, so I sincerely request you to all the above-mentioned tasks this week only.
 ### Week 1 Assignment
 Find it [here](https://adityak1729.github.io/Projects/WiDS4/Week1Assignment/)
+## Week 2
+Its time to make our original model now, the thing which you guys took this project for. To make the results more realistic, we will be using IPL 2025 squads after the recentmost IPL auction. [Here](https://www.espncricinfo.com/series/ipl-2025-1449924/squads) are the squads, we only need the main playing 11s, so we can ignore rest of the things, so for playing 11, either you can use your own cricket expertise and make your playing 11s, or just use mine linked here.  
+Now once we have playing 11s, now lets come to the dataset, to make the predictions more reliable we will be using all 3 of the 
 ## Dataset
 Here is the dataset 
 [IPL 2024 Ball-by-Ball Dataset](https://www.kaggle.com/datasets/sahiltailor/ipl-2024-ball-by-ball-dataset). Credits to Kaggle user [Sahil Tailor](https://www.kaggle.com/sahiltailor) for the dataset.
