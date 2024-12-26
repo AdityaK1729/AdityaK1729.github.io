@@ -24,7 +24,7 @@ If you are already familiar with python, you might play around and explore a bit
 Roughly what we are going to do is analyse each player in the dataset, that how he score runs, and the exact probability distribution on each ball, then we will run the simulation bowler against the batsman (based on the exact team matchup), and based on the points table and playoffs, we will predict the winner. You can find a really basic version of the idea [here](https://github.com/AdityaK1729/IPLProbSimulator).
 
 Soon, I will post an assignment based on the above concepts, which will be a mandatory requirement for certification, as I don't want this to be just one-day coding project, so I sincerely request you to all the above-mentioned tasks this week only.
-### Week 1 Assignment
+### Week 1 Assignment {#Week1-ass}
 Find it [here](https://adityak1729.github.io/Projects/WiDS4/Week1Assignment/)
 ## Week 2,3 {#Week-2and3}
 Its time to make our original model now, the thing which you guys took this project for. To make the results more realistic, we will be using IPL 2025 squads after the recentmost IPL auction. [Here](https://www.espncricinfo.com/series/ipl-2025-1449924/squads) are the squads, we only need the main playing 11s, so we can ignore rest of the things, so for playing 11, either you can use your own cricket expertise and make your playing 11s, or just use mine linked [here](https://adityak1729.github.io/Projects/WiDS4/playing11.txt).  
@@ -48,11 +48,11 @@ Thats it, repeat this for 20 overs, then change the team, and do this till targe
 This is the easy bit, now there are some choices you need to make here, firstly do you want to update the dataset of players each game on their performance, secondly are you comfortable handling the net run rate calculations, etc. Brownie points if you track other data such as orange cap/purple cap (most runs and wickets resp.) also. Now for NRR calculations used for tiebreaks, here is the formula-  
 $$ NRR=\frac{Total Runs Scored Throughout Season}{Overs Batted Throughout Season}-\frac{Total Runs Conceded Throughout Season}{Overs Bowled Throughout Season} $$  
 Note: We consider all out to be 20 overs bowled/batted by the respective teams, regardless of how quick you were bowled out.  
-I would recommend to use NRR only, as its not something too hard to implement, but still if you find it too hard, the thing you might do is just simulate each game till the full 20 overs, irrespective of whether the team won already (We anyways consider all out to be 20 overs batted only as above mentioned), and then just use the score difference logic you used in week 1 assignment.  
-For the schedule just use the first 70 columns (so that you dont include the playoffs) of the matches.csv file from the dataset for the league games (just like you did in week 1 assignment). Now once this is done, the thing you need to do is just use the old code from week 1 assignment and based on that simulate the whole tournament. That's it, you have successfully completed the project.  
+I would recommend to use NRR only, as its not something too hard to implement, but still if you find it too hard, the thing you might do is just simulate each game till the full 20 overs, irrespective of whether the team won already (We anyways consider all out to be 20 overs batted only as above mentioned), and then just use the score difference logic you used in [week 1 assignment](#Week1-ass).  
+For the schedule just use the first 70 columns (so that you dont include the playoffs) of the matches.csv file from the dataset for the league games (just like you did in week 1 assignment). Now once this is done, the thing you need to do is just use the old code from [week 1 assignment](#Week1-ass) and based on that simulate the whole tournament. That's it, you have successfully completed the project.  
 
 {: .box-warning}
-As I said in the week 1 assignment, use constant seed for all the random simulations, as that makes it a lot easier.
+As I said in the [week 1 assignment](#Week1-ass), use constant seed for all the random simulations, as that makes it a lot easier.
 
 ## Week 4
 This week is mainly buffer, if you have completed the project well and good, you might want to incorporate and record some more things, such as orange  cap/purple cap leaderboard etc, you might want to incorporate more factors such as home advantage, etc. This is just totally upto you.  
