@@ -1,0 +1,40 @@
+\documentclass{report}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[a4paper, margin=1in]{geometry} % Adjust margins
+\usepackage{hyperref}
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[section] % Theorems are numbered within sections
+\newtheorem{lemma}[theorem]{Lemma}     % Lemmas share numbering with theorems
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition} % Style for definitions
+\newtheorem{definition}[theorem]{Definition} % Definitions share numbering with theorems
+\newcommand{\real}{\mathbb{R}}
+\theoremstyle{remark} % Style for remarks
+\newtheorem{remark}[theorem]{Remark}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\newcommand{\chapterabstract}{
+    \textbf{Abstract:} 
+}
+\title{Supervised Learning Program \\ Probability}
+\author{Prepared by: \href{https://adityak1729.github.io}{Aditya Khambete} \\
+Supervisor : Prof. Ayan Bhattacharya}
+\date{Spring 2024-25}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\begin{abstract}
+    This is the running document for the supervised learning program I am doing this semester under the guidance of Prof. Ayan Bhattacharya. The aim of this document is to provide a comprehensive understanding of the topics I cover in the program. The document is divided into chapters, each chapter covering what I have learned in a week. The document is a work in progress and will be updated regularly.
+    The references I am using for this program are mentioned in the beginning of each chapter.
+\end{abstract}
+\include{./Chapters/Chapter1}
+% \include{./Chapters/Chapter2}
+% \include{./Chapters/Chapter3}
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
