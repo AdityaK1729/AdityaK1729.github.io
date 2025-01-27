@@ -7,4 +7,86 @@ Covered Topics:
     \end{itemize}
     References: Lecture notes of Prof. Ayan Bhattacharya \cite{Notes2024} and the book by Lesigne \cite{lesigne2005heads}
 \section{Basic Probability}
-Let $(\Omega,P)$ be a finite probability space. 
+Let $(\Omega,P)$ be a finite probability space. \footnote{The book doesn't mention the sigma field $\mathscr{F}$.} 
+Write $\Omega=\{\omega_1,\omega_2,\ldots,\omega_n\}$ and $P(\omega_i)=p_i$. We have the most basic formula of probability i.e. 
+\begin{align}
+    1=\sum_i{p_i} \text{, where each } 0 \leq p_i \leq 1
+\end{align}
+\begin{definition}
+    The probability of an event $A$ is defined as 
+    \begin{align}
+        P(A)=\sum_{\omega_i \in A}{p_i}=\sum_{i=1}^{n}{p_i \mathbb{I}_A(\omega_i)}
+    \end{align}
+    where $\mathbb{I}_A$ is the indicator function of $A$. This function maps $\omega_i$ to $1$ if $\omega_i \in A$ and $0$ otherwise.
+\end{definition}
+Some more basic properties of probability are:
+\begin{itemize}
+    \item $P(\Omega)=1$
+    \item $P(A \cup B)=P(A)+P(B) \text{ if } A \cap B=\emptyset$
+\end{itemize}
+Such set $\Omega$ is called a sample space, and P is called a probability function. It is easy to see from above properties that
+\begin{itemize}
+    \item $P(\emptyset)=0$
+    \item $P(A^c)=1-P(A)$
+    \item $P(A \cup B)=P(A)+P(B)-P(A \cap B)$
+\end{itemize}
+\begin{definition}
+    The Probability Space is called uniform if $p_i$ is the same for all $\omega_i$.
+\end{definition}
+\subsection{Sequential Experiments}
+Let us demonstrate this through an elementary example. Assume a binary experiment, taking outcomes 0,1 with q,p respectively. Easy to see that $p+q=1$. Now, consider we repeat this experiment $n$ times. 
+The sample space in this case is $\Omega_n=\{0,1\}^n$. The probability of a sequence $\omega=(\omega_1,\omega_2,\ldots,\omega_n)$ is 
+\begin{align}
+    P((\omega_1,\omega_2,\ldots,\omega_n))=p^{\sum_i{\omega_i}}q^{n-\sum_i{\omega_i}}
+\end{align}
+This is the probability function defined on the sample space $\Omega_n$. This is a simple example of a product probability space. We say the space $\Omega_n=\{0,1\}^n$ is equipped with the probability function $P_n=(q,p)^{\otimes n}$, where q,p are the probabilities of 0,1 respectively. 
+\\More details on why we did this product come from the notion of independence.
+\section{Random Variables}
+\begin{definition}
+    A random variable is a function $X:\Omega \to \real$.
+\end{definition}
+We use the denotion $(X=x)$ for the set $\{\omega \in \Omega : X(\omega)=x\}$. The probability of this event is $P(X=x)$, this is also known as the probability mass function of $X$. Similarly cumulative distribution function is defined as $F(x)=P(X \leq x)$.
+
+A very underrated fact is the space of random variables is a vector space. This is because the sum of two random variables is also a random variable, so is the product of a random variable with a scalar. The basis of this vector space is the indicator functions of the form $\mathbb{I}_{\omega_i}$ where $\omega_i \in \Omega$. \footnote{$I_{\omega_i}$ is the function that maps $\omega_i$ to 1 and all other $\omega_j$ to 0. As one might expect, this is a random variable as well.}
+\begin{definition}
+    Expectation of a random variable $X$ is defined as (if the sum converges)
+    \begin{align}
+        E[X]=\sum_{i=1}^{k}{x_i P(X=x_i)} \text{, where $k$ is the number of distinct values of X }
+    \end{align}
+\end{definition}
+Some easy to see properties\footnote{The last 2 facts imply E is a linear functional on the vector space of random variables.} 
+of expectation are:
+\begin{itemize}
+    \item $|E[X]| \leq E[|X|]$
+    \item $E[X]\geq 0 \text{ if } X\geq0$
+    \item $E[c]=c \text{ for any constant } c$, particularly $E[E[X]]=E[X]$
+    \item $E[aX]=aE[X]$
+    \item $E[X+Y]=E[X]+E[Y]$
+\end{itemize}
+Say we write $X=\sum_{i=1}^{k}{x_i \mathbb{I}_{A_i}}$, where $A_i=(X=x_i)$. Then $E[X]=\sum_{i=1}^{k}{x_i P(A_i)}$,
+say we take some function $g:\real \to \real$, then write $Y=g(X)=\sum_{i=1}^{k}{g(x_i) \mathbb{I}_{A_i}}$, hence applying $E$ on both sides, we get
+\begin{align}
+    E[Y]=E[g(X)]=\sum_{i=1}^{k}{g(x_i) P(A_i)}
+\end{align}
+\subsection{Some nice inequalities}
+\begin{theorem}
+    \textbf{Markov's Inequality:} Let $X$ be a non-negative random variable, then for any $a>0$, we have
+    \begin{align}
+        P(X \geq a) \leq \frac{E[X]}{a}
+    \end{align}
+\end{theorem}
+This inequality right above is in some sense the mother of all inequalities. The proof is fairly easy, just use the fact that $P(X \geq a)$ can be written as a summation of $P(X = x_i)$ for $x_i \geq a$, multiply by $\frac{x_i}{a}$ and sum over all $x_i$.
+\begin{theorem}
+    \textbf{Chebyshev's Inequality:} Let $X$ be a random variable with finite expectation and variance, then for any $a>0$, we have
+    \begin{align}
+        P(|X-E[X]| \geq a) \leq \frac{Var[X]}{a^2}
+    \end{align}
+\end{theorem}
+Follows from Markov's inequality, just use the fact that $Var[X]=E[(X-E[X])^2]$, and apply Markov's inequality on $Y=(X-E[X])^2$.
+\begin{definition}
+    The variance of a random variable $X$ is defined as
+    \begin{align}
+        Var[X]=E[(X-E[X])^2] \text{, it simplifies to } E[X^2]-E[X]^2
+    \end{align}
+\end{definition}
+\section{Independence}
