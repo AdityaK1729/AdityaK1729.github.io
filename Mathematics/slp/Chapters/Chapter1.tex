@@ -90,3 +90,158 @@ Follows from Markov's inequality, just use the fact that $Var[X]=E[(X-E[X])^2]$,
     \end{align}
 \end{definition}
 \section{Independence}
+\begin{definition}
+    Two events $A,B$ are independent if $P(A \cap B)=P(A)P(B)$. Except the trivial case with $P(B)=0$, we can write this as $\frac{P(A \cap B)}{P(B)}=\frac{P(A)}{P(\Omega)}.$
+\end{definition}
+Once we have the notion of independence, we can check where does the product probability space come from.
+\begin{align}
+    P((\omega_1,\omega_2,\ldots,\omega_n))=p^{\sum_i{\omega_i}}q^{n-\sum_i{\omega_i}}
+\end{align}
+Let us extend the notion to more than 1 event,
+\begin{definition}
+    A set of events $A_1,A_2,\ldots,A_n$ are independent if for any subset $I \subset \{1,2,\ldots,n\}$, we have
+    \begin{align}
+        P(\cap_{i \in I}{A_i})=\prod_{i \in I}{P(A_i)}
+    \end{align}
+\end{definition}
+One very important thing to note is that if the events $A_1,A_2,\ldots, A_n$ satisfy $P(\cap_{i \in I}{A_i})=\prod_{i \in I}{P(A_i)}$ it doesn't imply that the events are independent, just take one of the events to be the empty set for example.
+An interesting example showing that pairwise independence doesn't imply mutual independence is the following. Say we havre a fair coin, define,
+\begin{align*}
+    A_1&=\{HH,HT\} \\
+    A_2&=\{HH,TH\} \\
+    A_3&=\{HT,TH\}
+\end{align*}
+Then $A_1,A_2,A_3$ are pairwise independent, but not mutually independent.
+\subsection{Independence of Random Variables}
+Random variables are independent if the events $\{X_i=x\}$ are independent for all $x \in \real$. Alternatively, we can say that the events $(X_1 \in B_1)$ , $(X_2 \in B_2)$, $\ldots$, $(X_n \in B_n)$ are independent for all $B_1,B_2,\ldots,B_n \subset \real$.
+Its not hard to notice the following facts:
+\begin{itemize}
+    \item independence of random variables doesn't depend on the order of the random variables.
+    \item random variables $X_1, X_2, \ldots, X_n$ are independent if the events $(X_1=x_1 \text{ and } X_2=x_2 \text{ and } \ldots \text{ and } X_{j-1}=x_{j-1})$\footnote{Writing $(X_1=x_1 \text{ and } X_2=x_2)$ is the same as writing $(X_1=x_1) \cap (X_2=x_2)$} 
+    is independent of $(X_j=x_j)$ for all $j \in \{2,3,\ldots,n\}$, $x_1,x_2,\ldots,x_{j-1},x_j \in \real$.
+    \item 2 events are independent if and only if the indicator functions are independent.
+\end{itemize}
+Now notice the following fact, 
+\begin{theorem}
+If $X,Y$ are independent random variables, then 
+\begin{align}
+    E[XY]=E[X]E[Y]
+\end{align}
+\end{theorem}
+\begin{proof}
+    Let A and B be the range of $X,Y$ respectively,\\
+    We have
+    \begin{align*}
+        E[XY]&=\sum_{x \in A}\sum_{y \in B}{xyP(X=x,Y=y)} \\
+        &=\sum_{x \in A}\sum_{y \in B}{xyP(X=x)P(Y=y)} \\
+        &=\sum_{x \in A}{xP(X=x)}\sum_{y \in B}{yP(Y=y)} \tag*{\{By Independence\}} \\ 
+        &=E[X]E[Y]
+    \end{align*}
+\end{proof}
+\begin{corollary}
+    If $X,Y$ are independent random variables, then $Var[X+Y]=Var[X]+Var[Y]$
+\end{corollary}
+\begin{proof}
+    \begin{align*}
+        Var[X+Y]&=E[(X+Y)^2]-E[X+Y]^2 \\
+        &=E[X^2]+E[Y^2]+2E[XY]-E[X]^2-E[Y]^2-2E[X]E[Y] \\
+        &=Var[X]+Var[Y]
+    \end{align*}
+\end{proof}
+\section{Binomial Distribution}
+Take the product probability space $\Omega_n=\{0,1\}^n$ with $P_n=(q,p)^{\otimes n}$. Let $S_n$ be the number of 1's in the sequence $\omega=(\omega_1,\omega_2,\ldots,\omega_n)$. Then $S_n$ is a random variable on $\Omega_n$. 
+\begin{theorem}
+    The probability mass function of $S_n$ is given by
+    \begin{align}
+        P(S_n=k)=\binom{n}{k}p^kq^{n-k}
+    \end{align}
+\end{theorem}
+We say the random variable $S_n$ follows a binomial distribution with parameters $n,p$. Note that $q$ is not a parameter, it is just $1-p$. 
+\\To prove this, just notice the probability of selecting a specific sequence with $k$ 1's is $p^kq^{n-k}$, and the number of such sequences is $\binom{n}{k}$.
+\begin{definition}
+    Bernoulli distribution is a special case of binomial distribution with $n=1$. It is the same as a unbiased coin flip. Few properties-
+    \begin{itemize}
+        \item $E[X]=p$
+        \item $Var[X]=pq=p(1-p)$
+    \end{itemize}
+\end{definition}
+\begin{theorem}
+    Let $X_1,X_2,\ldots,X_n$ be independent Bernoulli random variables with parameter $p$. Then the sum $S_n=X_1+X_2+\ldots+X_n$ follows a binomial distribution with parameters $n,p$.s
+\end{theorem}
+The proof is fairly easy from the results we have already proved.
+\begin{theorem}
+    $E[S_n]=np \text{ and } Var[S_n]=npq$
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        E[S_n]&=E[X_1+X_2+\ldots+X_n] \\
+        &=E[X_1]+E[X_2]+\ldots+E[X_n] \\
+        &=np
+    \end{align*}
+    For variance, we have 
+    \begin{align*}
+        Var[S_n]&=Var[X_1+X_2+\ldots+X_n] \\
+        &=Var[X_1]+Var[X_2]+\ldots+Var[X_n] \\
+        &=npq
+    \end{align*}
+\end{proof}
+\section{Weak Law of Large Numbers}
+As in the last section, let $S_n$ be the number of successful trials in $n$ independent Bernoulli trials with parameter $p$. Then $S_n$ follows a binomial distribution with parameters $n,p$. $S_n$ is a random variable over the product probability space $(\Omega_n,P_n)$\\
+The experimental probability of success is $\frac{S_n}{n}$, intutively we expect this to be close to $p$ as $n$ increases. This is the weak law of large numbers.
+\footnote{The proof presented is not true for all distributions, it is true only for Bernoulli here, and more generally for any distribution with finite variance, the standard statement of weak law of large numbers is for any distribution with finite expectation, and the existence of variance is not necessary, and that proof is much more complicated.}
+\begin{theorem}
+    Let $X_1,X_2,\ldots,X_n$ be independent Bernoulli random variables with parameter $p$. Let $S_n=X_1+X_2+\ldots+X_n$. Then for any $\epsilon>0$, we have
+    \begin{align}
+        P\left(\left|\frac{S_n}{n}-p\right| \geq \epsilon\right) \to 0 \text{ as } n \to \infty
+    \end{align}
+\end{theorem}
+\begin{proof}
+    Use Chebyshev's inequality, we have
+    \begin{align*}
+        P\left(\left|\frac{S_n}{n}-p\right| \geq \epsilon\right) &\leq \frac{Var[S_n/n]}{\epsilon^2} \\
+        &=\frac{Var[S_n]}{n^2\epsilon^2} \\ 
+        &=\frac{p(1-p)}{n\epsilon^2}&\text{(By Independence)} \\
+        &\to 0 \text{ as } n \to \infty
+    \end{align*}
+\end{proof}
+This has a nice application in analysis, the problem of uniformly approximating a continuous function by a polynomial. This is known as Weierstrass Approximation Theorem.
+To state it rigorously, let $f:[0,1]\footnote{This can be generalised to any closed interval [a,b]} \to \real$ be a continuous function. Then for any $\epsilon>0$, there exists a polynomial $P(x)$ such that $|f(x)-P(x)|<\epsilon$ for all $x \in [0,1]$.
+\\Serge Bernstein gave a probabilistic proof of this theorem. 
+\begin{lemma}
+    Let $f$ be a continuous function on $[0,1]$. Then,
+    \begin{align}
+        sup_{x \in [0,1]}|f(x)-P_n(x)| \to 0 \text{ as } n \to \infty \text{ ,where } P_n(x)=\sum_{k=0}^{n}\binom{n}{k}\left(\frac{n}{k}\right)(x^k)(1-x)^k
+    \end{align}
+\end{lemma}
+\begin{proof}
+    Fix $\epsilon>0$, $\exists \text{ } \eta \text{ such that }$
+    \begin{align}
+        |x-y| < \eta \implies |f(x)-f(y)| < \epsilon \text{ where } 0 \leq x,y \leq 1
+    \end{align}
+    Consider the space $(\Omega_n,P_n)$, and the random variable $f\left(\frac{S_n}{n}\right)$ where $S_n$ is as above. 
+    We have
+    \begin{align*}
+        E\left[f\left(\frac{S_n}{n}\right)\right]&=\sum_{k=0}^{n}{f\left(\frac{k}{n}\right)P(S_n=k)} \\
+        &=\sum_{k=0}^{n}{f\left(\frac{k}{n}\right)\binom{n}{k}p^k(1-p)^{n-k}} \\
+    \end{align*}
+    By WLLN, we have
+    \begin{align}
+        P\left(\left|\frac{S_n}{n}-p\right| \geq \eta\right) \to 0 \text{ as } n \to \infty
+    \end{align}
+    Hence, $\exists$ $N_0$ independent of $p$, such that for every $n \geq N_0$
+    \begin{align}
+        P\left(\left|\frac{S_n}{n}-p\right| > \eta\right) < \epsilon
+    \end{align}
+    Also we have
+    \begin{align*}
+        \left|E_n\left[f\left(\frac{S_n}{n}\right)\right]-f(p)\right| = \left|\sum_{k=0}^{n}{f\left(\frac{k}{n}-f(p)\right)P_n(S_n=k)}\right|
+    \end{align*}
+    breaking the sum into 2 parts, and applying the triangle inequality, we get the following upper bound,
+    \begin{align*}
+        &\sum_{\left| \frac{k}{n} - p \right| \leq \eta} \left| f \left( \frac{k}{n} \right) - f(p) \right| P_n(S_n = k)+ \sum_{\left| \frac{k}{n} - p \right| > \eta} \left( \left| f \left( \frac{k}{n} \right) \right| + |f(p)| \right) P_n(S_n = k)\\
+        \leq & \sum_{\left| \frac{k}{n} - p \right| \leq \eta} \epsilon P_n(S_n = k) + \sum_{\left| \frac{k}{n} - p \right| > \eta} 2 \sup_{0 \leq x \leq 1} |f(x)| P_n(S_n = k)\\
+        = & \epsilon + 2 \sup_{0 \leq x \leq 1} |f(x)| P_n\left(\left|\fb{S_n}{n} - p \right| >  \eta\right)
+        = \epsilon + 2 \sup_{0 \leq x \leq 1} |f(x)| \epsilon
+    \end{align*}
+    Which shows the upper bound can be made arbitrarily small, hence the proof.
+\end{proof}
