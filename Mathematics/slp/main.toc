@@ -4,3 +4,6 @@
 \contentsline {section}{\numberline {1.2}Random Variables}{2}{section.1.2}%
 \contentsline {subsection}{\numberline {1.2.1}Some nice inequalities}{2}{subsection.1.2.1}%
 \contentsline {section}{\numberline {1.3}Independence}{3}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Independence of Random Variables}{3}{subsection.1.3.1}%
+\contentsline {section}{\numberline {1.4}Binomial Distribution}{4}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Weak Law of Large Numbers}{5}{section.1.5}%
