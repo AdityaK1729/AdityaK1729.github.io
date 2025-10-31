@@ -9,4 +9,4 @@ Well anyways this page is too empty and I need something to fill it, so here you
 - Projects: [Click here](https://adityak1729.github.io/Projects/)
 - Maths: [Click here](https://adityak1729.github.io/Mathematics)
 
-Well I figured out you are here now, you might as well read some of my rants. Well the above 2 links you see are essentially links I thought I would add something, but I never did, in life there are a lot of things you think you'd do but you never do, so if anyone can tell me what to do to make the fraction of things you really do among you things you think you'd do as high as possible, please email me at `my last name`[at]iitb.ac.in
+Well I figured out you are here now, you might as well read some of my rants. Well the above 2 links you see are essentially links I thought I would add something, but I never did, in life there are a lot of things you think you'd do but you never do, so if anyone can tell me what to do to make the fraction of things you really do among you things you think you'd do as high as possible, please email me at `my last name[at]iitb.ac.in`
