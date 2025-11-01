@@ -1,12 +1,12 @@
 ---
 layout: post
-title: WiDS 5.0
-subtitle: Deep Learning from Scratch
+title:  Deep Learning from Scratch
+subtitle: WiDS 5.0
 mathjax: true
 gh-repo: AdityaK1729/AdityaK1729.github.io
 gh-batch: [star, fork, follow]
 author: Aditya Khambete
-date: 2024-12-26
+date: 2025-11-02
 ---
 
 # Deep Learning from Scratch: Perceptron to Custom CNN
