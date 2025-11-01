@@ -1,7 +1,7 @@
 ---
 layout: post
-title: WiDS 4.0
-subtitle: Probability-Based IPL Simulator
+title: WiDS 5.0
+subtitle: Deep Learning from Scratch
 mathjax: true
 gh-repo: AdityaK1729/AdityaK1729.github.io
 gh-batch: [star, fork, follow]
