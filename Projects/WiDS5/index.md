@@ -1,10 +1,12 @@
 ---
 layout: post
-title: WiDS 5.0
-subtitle: Deep Learning from Scratch: Perceptron to Custom CNN
+title: WiDS 4.0
+subtitle: Probability-Based IPL Simulator
 mathjax: true
+gh-repo: AdityaK1729/AdityaK1729.github.io
 gh-batch: [star, fork, follow]
 author: Aditya Khambete
+date: 2024-12-26
 ---
 
 # Deep Learning from Scratch: Perceptron to Custom CNN
