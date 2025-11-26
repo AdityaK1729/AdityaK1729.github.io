@@ -13,7 +13,7 @@ date: 2025-11-02
 
 ## Secret Assignment
 
-Since you clicked on this link, you now get access to the secret [assignment], complete it and submit in place of SOP, I would give you preference :)
+Since you clicked on this link, you now get access to the secret [assignment](https://docs.google.com/document/d/1gZr_OxMArQRjSHa4GI5J6BynwCdgmIj-38doDGXNQH8/edit?usp=sharing), complete it and submit in place of SOP, I would give you preference :)
 
 ---
 
