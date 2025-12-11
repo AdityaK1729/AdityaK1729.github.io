@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiDS 5.0 | Deep Learning from Scratch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Academic Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        academic: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            600: '#0284c7', // Teal/Blue accent
+                            800: '#075985',
+                            900: '#0c4a6e', // Deep Navy
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth Scrolling & Scrollbar */
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Animations */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .page-section.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Academic Card Hover Effect */
+        .academic-card {
+            transition: all 0.2s ease-in-out;
+            border-bottom: 2px solid transparent;
+        }
+        .academic-card:hover {
+            transform: translateY(-2px);
+            border-bottom: 2px solid #0284c7; /* academic-600 */
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
+
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo area -->
+                <div class="flex items-center cursor-pointer group" onclick="showSection('home')">
+                    <div class="w-8 h-8 bg-academic-900 text-white rounded flex items-center justify-center mr-3 group-hover:bg-academic-600 transition-colors">
+                        <i class="fas fa-graduation-cap text-sm"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif font-bold text-lg text-slate-900 leading-none">WiDS <span class="text-academic-600">5.0</span></span>
+                        <span class="text-[10px] uppercase tracking-wider text-slate-500 font-medium">Deep Learning Course</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Nav -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-1">
+                        <button onclick="showSection('home')" class="px-4 py-2 text-sm font-medium rounded-md text-slate-900 hover:bg-slate-100 transition-colors">Overview</button>
+                        <button onclick="showSection('week1')" class="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-academic-800 hover:bg-slate-50 transition-colors">Week 1</button>
+                        <button onclick="alert('Module locked until completion of Week 1.')" class="px-4 py-2 text-sm font-medium rounded-md text-slate-400 hover:text-slate-500 cursor-not-allowed flex items-center"><i class="fas fa-lock text-xs mr-1.5 opacity-50"></i> Week 2</button>
+                        <button onclick="alert('Module locked.')" class="px-4 py-2 text-sm font-medium rounded-md text-slate-400 hover:text-slate-500 cursor-not-allowed flex items-center"><i class="fas fa-lock text-xs mr-1.5 opacity-50"></i> Week 3</button>
+                        
+                        <div class="h-6 w-px bg-slate-300 mx-2"></div>
+                        
+                        <a href="https://github.com/your-repo" target="_blank" class="px-4 py-2 rounded-md text-sm font-medium text-academic-900 border border-academic-900 hover:bg-academic-50 transition-colors">
+                            <i class="fab fa-github mr-2"></i>Repository
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+        
+        <!-- ================= HOME PAGE ================= -->
+        <div id="home" class="page-section active">
+            <!-- Hero Section -->
+            <div class="bg-white border-b border-slate-200">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+                    <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold tracking-wide uppercase mb-4">Fall 2025 Cohort</span>
+                    <h1 class="text-4xl sm:text-5xl font-serif font-bold text-slate-900 mb-6 leading-tight">
+                        Deep Learning <span class="text-academic-600">from Scratch</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+                        An intensive, collaborative research project to build a custom Neural Network library. Moving beyond "black box" APIs to understand the mathematics of intelligence.
+                    </p>
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="showSection('week1')" class="px-6 py-3 bg-academic-900 text-white font-medium rounded shadow-sm hover:bg-academic-800 transition-all hover:shadow-md">
+                            Begin Module 1
+                        </button>
+                        <a href="#syllabus" class="px-6 py-3 bg-white text-slate-700 font-medium border border-slate-300 rounded shadow-sm hover:bg-slate-50 transition-all">
+                            View Syllabus
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Syllabus / Timeline -->
+            <div id="syllabus" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="flex items-center mb-8">
+                    <h2 class="text-2xl font-serif font-bold text-slate-900">Course Schedule</h2>
+                    <div class="h-px bg-slate-200 flex-grow ml-6"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Week 1 -->
+                    <div class="academic-card bg-white p-6 rounded-lg shadow-sm border border-slate-200 cursor-pointer" onclick="showSection('week1')">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-bold text-academic-600 uppercase tracking-widest">Week 01</span>
+                            <span class="text-green-600 text-xs bg-green-50 px-2 py-1 rounded-full border border-green-100">Active</span>
+                        </div>
+                        <h3 class="text-xl font-serif font-semibold text-slate-900 mb-2">Tensors & Matrices</h3>
+                        <p class="text-sm text-slate-600 mb-4 line-clamp-3">
+                            Introduction to high-performance computing. Moving from scalar loops to vectorized operations on GPU hardware.
+                        </p>
+                        <div class="text-sm font-medium text-academic-800 flex items-center group">
+                            Go to Module <i class="fas fa-arrow-right ml-2 text-xs transition-transform group-hover:translate-x-1"></i>
+                        </div>
+                    </div>
+
+                    <!-- Week 2 -->
+                    <div class="academic-card bg-slate-50 p-6 rounded-lg border border-slate-200 opacity-75">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Week 02</span>
+                            <span class="text-slate-500 text-xs"><i class="fas fa-clock mr-1"></i> Upcoming</span>
+                        </div>
+                        <h3 class="text-xl font-serif font-semibold text-slate-700 mb-2">The Perceptron</h3>
+                        <p class="text-sm text-slate-500 mb-4">
+                            Geometric interpretation of linear classifiers. The XOR problem and the limitations of single neurons.
+                        </p>
+                    </div>
+
+                    <!-- Week 3 -->
+                    <div class="academic-card bg-slate-50 p-6 rounded-lg border border-slate-200 opacity-75">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Week 03</span>
+                            <span class="text-slate-500 text-xs"><i class="fas fa-clock mr-1"></i> Upcoming</span>
+                        </div>
+                        <h3 class="text-xl font-serif font-semibold text-slate-700 mb-2">Backpropagation</h3>
+                        <p class="text-sm text-slate-500 mb-4">
+                            Deriving the chain rule for computational graphs. Implementing the Multi-Layer Perceptron (MLP).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= WEEK 1 PAGE ================= -->
+        <div id="week1" class="page-section">
+            <!-- Header -->
+            <div class="bg-academic-900 text-white border-b border-academic-800">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <nav class="flex mb-4 text-academic-100 text-xs uppercase tracking-wide font-semibold">
+                        <span class="cursor-pointer hover:text-white transition-colors" onclick="showSection('home')">Home</span>
+                        <span class="mx-2">/</span>
+                        <span class="text-white">Week 01</span>
+                    </nav>
+                    <h1 class="text-3xl font-serif font-bold text-white mb-2">Tensors, Matrix Math & The GPU</h1>
+                    <p class="text-academic-100 text-lg font-light max-w-2xl">
+                        Theme: <span class="italic text-white">"Death to the For-Loop"</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- LEFT COLUMN (Content) -->
+                    <div class="lg:col-span-8 space-y-10">
+                        
+                        <!-- Learning Objectives -->
+                        <section>
+                            <h2 class="text-xl font-serif font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">
+                                Learning Objectives
+                            </h2>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="bg-white p-4 rounded border border-slate-200 shadow-sm">
+                                    <div class="text-academic-600 mb-2"><i class="fas fa-cube"></i></div>
+                                    <h4 class="font-bold text-sm text-slate-800">Array Thinking</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Shift from scalar variables to Tensor objects.</p>
+                                </div>
+                                <div class="bg-white p-4 rounded border border-slate-200 shadow-sm">
+                                    <div class="text-academic-600 mb-2"><i class="fas fa-layer-group"></i></div>
+                                    <h4 class="font-bold text-sm text-slate-800">Broadcasting</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Implicit expansion of dimensions `(N,1)` vs `(1,M)`.</p>
+                                </div>
+                                <div class="bg-white p-4 rounded border border-slate-200 shadow-sm">
+                                    <div class="text-academic-600 mb-2"><i class="fas fa-microchip"></i></div>
+                                    <h4 class="font-bold text-sm text-slate-800">Hardware</h4>
+                                    <p class="text-xs text-slate-500 mt-1">SIMD architecture and GPU parallelism.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Resources -->
+                        <section>
+                            <h2 class="text-xl font-serif font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">
+                                Required Reading & Viewing
+                            </h2>
+                            <div class="space-y-3">
+                                <!-- Item -->
+                                <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs" target="_blank" class="block group">
+                                    <div class="bg-white p-4 rounded border border-slate-200 hover:border-academic-600 transition-colors flex items-start">
+                                        <div class="flex-shrink-0 mt-1 mr-4 text-red-600 bg-red-50 p-2 rounded">
+                                            <i class="fab fa-youtube"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-sm font-bold text-slate-900 group-hover:text-academic-600 transition-colors">3Blue1Brown: Vectors, what even are they?</h3>
+                                            <p class="text-xs text-slate-500 mt-1">Visualizing linear algebra as geometric transformations rather than just lists of numbers.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- Item -->
+                                <a href="https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html" target="_blank" class="block group">
+                                    <div class="bg-white p-4 rounded border border-slate-200 hover:border-academic-600 transition-colors flex items-start">
+                                        <div class="flex-shrink-0 mt-1 mr-4 text-orange-600 bg-orange-50 p-2 rounded">
+                                            <i class="fas fa-file-alt"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-sm font-bold text-slate-900 group-hover:text-academic-600 transition-colors">PyTorch 60-Minute Blitz</h3>
+                                            <p class="text-xs text-slate-500 mt-1">Official Documentation. Read Sections 1 & 2 only (Tensors & Autograd).</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- Item -->
+                                <a href="https://jaykmody.com/blog/numpy-visualized/" target="_blank" class="block group">
+                                    <div class="bg-white p-4 rounded border border-slate-200 hover:border-academic-600 transition-colors flex items-start">
+                                        <div class="flex-shrink-0 mt-1 mr-4 text-green-600 bg-green-50 p-2 rounded">
+                                            <i class="fas fa-chart-bar"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-sm font-bold text-slate-900 group-hover:text-academic-600 transition-colors">NumPy Visualized</h3>
+                                            <p class="text-xs text-slate-500 mt-1">A critical visual guide to understanding Broadcasting and Slicing.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </section>
+
+                        <!-- Assignment -->
+                        <section>
+                            <h2 class="text-xl font-serif font-bold text-slate-900 mb-4 pb-2 border-b border-slate-200">
+                                Assignment: The Tensor Gym
+                            </h2>
+                            <div class="bg-slate-100 p-6 rounded-lg border border-slate-200">
+                                <p class="text-sm text-slate-700 mb-4 italic">
+                                    Instruction: Create a Google Colab notebook. Solve the following <strong>without using `for` loops</strong>.
+                                </p>
+                                <ul class="space-y-4">
+                                    <li class="flex gap-3">
+                                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs font-bold">1</span>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-slate-900">The RGB Flip</h4>
+                                            <p class="text-xs text-slate-600">Tensor shape <code>(3, 256, 256)</code>. Swap Red (0) and Blue (2) channels.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs font-bold">2</span>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-slate-900">The Checkerboard</h4>
+                                            <p class="text-xs text-slate-600">Generate an 8x8 checkerboard of 0s and 1s using slicing/reshaping.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs font-bold">3</span>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-slate-900">The Mask</h4>
+                                            <p class="text-xs text-slate-600">Replace all values < 0.5 in a random tensor with 0.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- RIGHT COLUMN (Sidebar) -->
+                    <div class="lg:col-span-4 space-y-6">
+                        
+                        <!-- Collab Card -->
+                        <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                            <div class="bg-slate-50 p-4 border-b border-slate-200 flex items-center justify-between">
+                                <h3 class="font-serif font-bold text-slate-800">Collaborative Task</h3>
+                                <i class="fab fa-github text-slate-400 text-xl"></i>
+                            </div>
+                            <div class="p-5">
+                                <p class="text-xs font-bold text-academic-600 uppercase mb-2">Phase 1: Setup</p>
+                                <p class="text-sm text-slate-600 mb-4">Initialize the shared repository environment.</p>
+                                
+                                <ol class="list-decimal list-inside space-y-2 text-sm text-slate-700 marker:text-slate-400 marker:font-medium">
+                                    <li>Create GitHub Account</li>
+                                    <li>Fork <code class="bg-slate-100 px-1 rounded text-academic-800">wids_lib</code></li>
+                                    <li>Add <code class="bg-slate-100 px-1 rounded">students/bio.txt</code></li>
+                                    <li>Submit Pull Request</li>
+                                </ol>
+
+                                <a href="#" class="mt-4 block w-full py-2 text-center bg-slate-800 hover:bg-slate-900 text-white text-sm font-medium rounded transition-colors">
+                                    Open Repository
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Contest Card -->
+                        <div class="bg-gradient-to-br from-academic-900 to-academic-800 rounded-lg shadow-md text-white overflow-hidden relative">
+                            <div class="absolute top-0 right-0 p-4 opacity-10">
+                                <i class="fas fa-trophy text-6xl"></i>
+                            </div>
+                            <div class="p-5 relative z-10">
+                                <div class="flex items-center space-x-2 text-academic-200 mb-1">
+                                    <i class="fas fa-flag-checkered"></i>
+                                    <span class="text-xs font-bold uppercase tracking-wider">Weekly Contest</span>
+                                </div>
+                                <h3 class="text-lg font-serif font-bold mb-2">The Vector Racer</h3>
+                                <p class="text-sm text-academic-100 mb-4">
+                                    Classify MNIST digits using Nearest Neighbor.
+                                </p>
+                                
+                                <div class="bg-white/10 rounded p-3 mb-4 backdrop-blur-sm">
+                                    <p class="text-xs text-academic-50">
+                                        <span class="font-bold">Constraint:</span> No loops permitted. Must use GPU broadcasting.
+                                    </p>
+                                </div>
+
+                                <button class="w-full py-2 bg-white text-academic-900 text-sm font-bold rounded hover:bg-academic-50 transition-colors">
+                                    View Leaderboard
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="font-serif font-bold text-slate-200 text-lg">WiDS 5.0</span>
+                <p class="text-sm mt-1">Indian Institute of Technology Bombay</p>
+            </div>
+            <div class="text-sm flex space-x-6">
+                <a href="#" class="hover:text-white transition-colors">Aditya Khambete</a>
+                <a href="#" class="hover:text-white transition-colors">Resources</a>
+                <a href="#" class="hover:text-white transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Logic -->
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo(0,0);
+        }
+    </script>
+</body>
+</html>
