@@ -15,6 +15,7 @@ date: 2025-11-02
 
 Since you clicked on this link, you now get access to the secret [assignment](https://docs.google.com/document/d/1gZr_OxMArQRjSHa4GI5J6BynwCdgmIj-38doDGXNQH8/edit?usp=sharing), complete it and submit in place of SOP, I would give you preference :)
 
+
 ---
 
 ## Description
@@ -29,9 +30,9 @@ At the end, we will have a working CNN, based on your own architecture, and your
 No prior knowledge needed, just curiosity
 ### Timeline
 Here is a tentative timeline:
-Week 1: Introduction to PyTorch, brushup on Python
+Week 1: Tensors, Matrices, and The GPU 
 Week 2: Perceptron
-Week 3: Simple Neural Networks
+Week 3: Simple Neural Networks and Backprop
 Week 4: Image Processing and Introduction to Convolutional Neural Networks
 Week 5: Implementing CNNs
 Week 6: Buffer
@@ -42,21 +43,6 @@ Here is what to expect from this website: I will upload all the public resources
 
 ## Resources for Week 1
 
-For Week 1, we will focus on **Python brush-up**, **PyTorch basics**, and the first real deep learning model **Perceptron**.
-
-If you're already comfortable with Python, skip to PyTorch and Perceptron.
-
-### Python Brush-Up
-- [w3schools Python – Up to Functions](https://www.w3schools.com/python/)  
-  *(Focus: Variables, Loops, Conditionals, Functions, Lists, Dictionaries)*
-- [Automate the Boring Stuff – Chapter 1 & 2](https://automatetheboringstuff.com/2e/chapter1/) (Free)
-
-### PyTorch Basics
-- [PyTorch 60-Minute Blitz](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html)  
-  *(Do: Tensors, Autograd, nn.Module)*
-### Perceptron Theory
-- [Perceptron – Simple Explanation](http://neuralnetworksanddeeplearning.com/chap1.html#perceptrons)
-- [YouTube: "Perceptron"](https://www.youtube.com/watch?v=4Gac5I64LM4)
 
 ---
 
