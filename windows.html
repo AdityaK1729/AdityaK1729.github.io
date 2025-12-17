@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows OS Web Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .window-shadow {
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .start-menu-blur {
+            backdrop-filter: blur(20px);
+            background-color: rgba(17, 24, 39, 0.85);
+        }
+        .active-window {
+            z-index: 50 !important;
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
+        }
+        .taskbar-blur {
+            backdrop-filter: blur(15px);
+            background-color: rgba(3, 7, 18, 0.8);
+        }
+        .desktop-icon-text {
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body class="h-screen w-screen bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop');">
+
+    <!-- Desktop Area -->
+    <div id="desktop" class="relative h-full w-full p-4 flex flex-col gap-6 items-start">
+        <div class="flex flex-col items-center gap-1 p-2 w-24 h-24 rounded hover:bg-white/10 transition-all cursor-default group" onclick="openApp('File Explorer')">
+            <i data-lucide="monitor" class="w-10 h-10 text-blue-300"></i>
+            <span class="text-[11px] text-white desktop-icon-text text-center truncate w-full">This PC</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 p-2 w-24 h-24 rounded hover:bg-white/10 transition-all cursor-default group" onclick="openApp('File Explorer')">
+            <i data-lucide="folder" class="w-10 h-10 text-yellow-400"></i>
+            <span class="text-[11px] text-white desktop-icon-text text-center truncate w-full">Recycle Bin</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 p-2 w-24 h-24 rounded hover:bg-white/10 transition-all cursor-default group" onclick="openApp('Notepad')">
+            <i data-lucide="file-text" class="w-10 h-10 text-gray-300"></i>
+            <span class="text-[11px] text-white desktop-icon-text text-center truncate w-full">Project Docs</span>
+        </div>
+    </div>
+
+    <!-- Windows Container -->
+    <div id="window-container"></div>
+
+    <!-- Start Menu -->
+    <div id="start-menu" class="hidden absolute bottom-14 left-2 w-96 h-[500px] start-menu-blur border border-white/10 rounded-lg shadow-2xl z-[1000] flex flex-col overflow-hidden">
+        <div class="flex-1 p-6 overflow-y-auto">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                    <i data-lucide="user" size="20"></i>
+                </div>
+                <div>
+                    <div class="text-sm font-semibold text-white">Web Guest</div>
+                    <div class="text-xs text-gray-400">Connected</div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <div class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4 px-2">Pinned Apps</div>
+                <div class="grid grid-cols-3 gap-2">
+                    <button onclick="openApp('Notepad')" class="flex flex-col items-center gap-2 p-3 hover:bg-white/5 rounded-md transition-colors text-white">
+                        <i data-lucide="file-text" class="w-8 h-8 text-blue-400"></i>
+                        <span class="text-[10px] text-center">Notepad</span>
+                    </button>
+                    <button onclick="openApp('File Explorer')" class="flex flex-col items-center gap-2 p-3 hover:bg-white/5 rounded-md transition-colors text-white">
+                        <i data-lucide="folder" class="w-8 h-8 text-yellow-500"></i>
+                        <span class="text-[10px] text-center">Explorer</span>
+                    </button>
+                    <button onclick="openApp('Terminal')" class="flex flex-col items-center gap-2 p-3 hover:bg-white/5 rounded-md transition-colors text-white">
+                        <i data-lucide="terminal" class="w-8 h-8 text-gray-400"></i>
+                        <span class="text-[10px] text-center">Terminal</span>
+                    </button>
+                    <button onclick="openApp('Calculator')" class="flex flex-col items-center gap-2 p-3 hover:bg-white/5 rounded-md transition-colors text-white">
+                        <i data-lucide="calculator" class="w-8 h-8 text-green-400"></i>
+                        <span class="text-[10px] text-center">Calc</span>
+                    </button>
+                    <button onclick="openApp('Settings')" class="flex flex-col items-center gap-2 p-3 hover:bg-white/5 rounded-md transition-colors text-white">
+                        <i data-lucide="settings" class="w-8 h-8 text-gray-300"></i>
+                        <span class="text-[10px] text-center">Settings</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="h-12 bg-black/40 border-t border-white/5 flex items-center justify-between px-4">
+            <div class="flex items-center gap-3 text-xs text-gray-400 hover:text-white cursor-pointer transition-colors" onclick="location.reload()">
+               <i data-lucide="power" class="w-4 h-4"></i>
+               <span>Restart Simulator</span>
+            </div>
+            <button onclick="openApp('Settings')" class="p-1 hover:bg-white/10 rounded text-gray-400 hover:text-white transition-colors">
+               <i data-lucide="settings" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="h-12 w-full taskbar-blur flex items-center justify-between px-1 z-[2000] border-t border-white/5 fixed bottom-0 left-0">
+        <div class="flex items-center gap-1 h-full">
+            <button id="start-button" class="w-10 h-10 flex items-center justify-center rounded-md transition-colors hover:bg-white/10">
+                <div class="grid grid-cols-2 gap-0.5 w-4 h-4">
+                    <div class="bg-blue-400 rounded-sm"></div>
+                    <div class="bg-blue-400 rounded-sm"></div>
+                    <div class="bg-blue-400 rounded-sm"></div>
+                    <div class="bg-blue-400 rounded-sm"></div>
+                </div>
+            </button>
+
+            <div class="hidden md:flex items-center bg-white/10 px-3 py-1.5 rounded-full text-white/50 w-48 mx-1 hover:bg-white/20 transition-colors cursor-text group">
+                <i data-lucide="search" size="14" class="mr-2 group-hover:text-white"></i>
+                <span class="text-xs">Search apps...</span>
+            </div>
+
+            <div class="h-6 w-[1px] bg-white/10 mx-1 hidden sm:block"></div>
+
+            <!-- Active App Icons in Taskbar -->
+            <div id="taskbar-apps" class="flex items-center gap-1"></div>
+        </div>
+
+        <!-- System Tray -->
+        <div class="flex items-center gap-2 h-full px-2 text-white/80">
+            <div class="flex items-center gap-3 px-2 py-1 rounded hover:bg-white/10 transition-colors cursor-pointer">
+                <i data-lucide="wifi" size="14"></i>
+                <i data-lucide="volume-2" size="14"></i>
+            </div>
+            <div class="flex flex-col items-end px-2 py-0.5 rounded hover:bg-white/10 transition-colors cursor-pointer" id="system-time">
+                <span id="clock-time" class="text-[10px] font-medium leading-none mb-0.5">--:--</span>
+                <span id="clock-date" class="text-[10px] leading-none text-white/60">--- --, ----</span>
+            </div>
+            <div class="w-[2px] h-full border-l border-white/20 ml-1"></div>
+        </div>
+    </div>
+
+    <script>
+        // --- State ---
+        let openWindows = [];
+        let nextZ = 100;
+        let isStartOpen = false;
+
+        // --- Utils ---
+        const $ = (id) => document.getElementById(id);
+        
+        function updateClock() {
+            const now = new Date();
+            $('clock-time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            $('clock-date').textContent = now.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // --- Start Menu ---
+        $('start-button').addEventListener('click', (e) => {
+            e.stopPropagation();
+            isStartOpen = !isStartOpen;
+            $('start-menu').classList.toggle('hidden', !isStartOpen);
+            $('start-button').classList.toggle('bg-white/10', isStartOpen);
+        });
+
+        document.addEventListener('click', () => {
+            isStartOpen = false;
+            $('start-menu').classList.add('hidden');
+            $('start-button').classList.remove('bg-white/10');
+        });
+
+        // --- Window Management ---
+        function openApp(title) {
+            isStartOpen = false;
+            $('start-menu').classList.add('hidden');
+            
+            // If already open, focus it
+            const existing = openWindows.find(w => w.title === title);
+            if (existing) {
+                focusWindow(existing.id);
+                return;
+            }
+
+            const id = 'win-' + Date.now();
+            const winObj = { id, title, zIndex: nextZ++, maximized: false };
+            openWindows.push(winObj);
+
+            const winEl = document.createElement('div');
+            winEl.id = id;
+            winEl.className = 'absolute flex flex-col rounded-lg window-shadow overflow-hidden border border-white/10 bg-gray-900/95 backdrop-blur-md transition-shadow active-window';
+            winEl.style.zIndex = winObj.zIndex;
+            winEl.style.width = '600px';
+            winEl.style.height = '400px';
+            winEl.style.left = (100 + (openWindows.length * 30)) + 'px';
+            winEl.style.top = (50 + (openWindows.length * 30)) + 'px';
+
+            winEl.innerHTML = `
+                <div class="flex items-center justify-between h-9 px-3 bg-gray-800/50 cursor-default select-none title-bar">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-medium text-gray-300">${title}</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <button class="p-1.5 hover:bg-white/10 rounded btn-minimize"><i data-lucide="minus" class="w-3.5 h-3.5 text-gray-400"></i></button>
+                        <button class="p-1.5 hover:bg-white/10 rounded btn-maximize"><i data-lucide="square" class="w-3 h-3 text-gray-400"></i></button>
+                        <button class="p-1.5 hover:bg-red-500/80 rounded group btn-close"><i data-lucide="x" class="w-3.5 h-3.5 text-gray-400 group-hover:text-white"></i></button>
+                    </div>
+                </div>
+                <div class="flex-1 overflow-auto bg-gray-900 text-gray-100 app-content">
+                    ${getAppHTML(title)}
+                </div>
+            `;
+
+            $('window-container').appendChild(winEl);
+            lucide.createIcons();
+            
+            setupWindowInteractions(winEl, id);
+            updateTaskbar();
+            focusWindow(id);
+            
+            // App-specific init
+            if (title === 'Terminal') initTerminal(winEl);
+            if (title === 'Calculator') initCalculator(winEl);
+        }
+
+        function setupWindowInteractions(el, id) {
+            const titleBar = el.querySelector('.title-bar');
+            let isDragging = false;
+            let offset = { x: 0, y: 0 };
+
+            titleBar.onmousedown = (e) => {
+                focusWindow(id);
+                if (el.dataset.maximized === 'true') return;
+                isDragging = true;
+                offset = {
+                    x: e.clientX - el.offsetLeft,
+                    y: e.clientY - el.offsetTop
+                };
+            };
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                el.style.left = (e.clientX - offset.x) + 'px';
+                el.style.top = (e.clientY - offset.y) + 'px';
+            });
+
+            window.addEventListener('mouseup', () => isDragging = false);
+
+            el.onmousedown = () => focusWindow(id);
+
+            // Controls
+            el.querySelector('.btn-close').onclick = (e) => {
+                e.stopPropagation();
+                closeWindow(id);
+            };
+            el.querySelector('.btn-maximize').onclick = (e) => {
+                e.stopPropagation();
+                toggleMaximize(id);
+            };
+            el.querySelector('.btn-minimize').onclick = (e) => {
+                e.stopPropagation();
+                el.style.display = 'none';
+            };
+        }
+
+        function focusWindow(id) {
+            document.querySelectorAll('.active-window').forEach(w => w.classList.remove('active-window'));
+            const el = $(id);
+            if (el) {
+                el.classList.add('active-window');
+                el.style.zIndex = nextZ++;
+                el.style.display = 'flex';
+            }
+        }
+
+        function closeWindow(id) {
+            const el = $(id);
+            if (el) el.remove();
+            openWindows = openWindows.filter(w => w.id !== id);
+            updateTaskbar();
+        }
+
+        function toggleMaximize(id) {
+            const el = $(id);
+            const win = openWindows.find(w => w.id === id);
+            if (!win.maximized) {
+                win.oldRect = { t: el.style.top, l: el.style.left, w: el.style.width, h: el.style.height };
+                el.style.top = '0';
+                el.style.left = '0';
+                el.style.width = '100%';
+                el.style.height = 'calc(100% - 48px)';
+                el.dataset.maximized = 'true';
+            } else {
+                el.style.top = win.oldRect.t;
+                el.style.left = win.oldRect.l;
+                el.style.width = win.oldRect.w;
+                el.style.height = win.oldRect.h;
+                el.dataset.maximized = 'false';
+            }
+            win.maximized = !win.maximized;
+        }
+
+        function updateTaskbar() {
+            const container = $('taskbar-apps');
+            container.innerHTML = '';
+            
+            const apps = {
+                'Notepad': { icon: 'file-text', color: 'text-blue-400' },
+                'File Explorer': { icon: 'folder', color: 'text-yellow-500' },
+                'Terminal': { icon: 'terminal', color: 'text-gray-300' },
+                'Calculator': { icon: 'calculator', color: 'text-green-400' },
+                'Settings': { icon: 'settings', color: 'text-gray-400' }
+            };
+
+            openWindows.forEach(win => {
+                const config = apps[win.title];
+                const btn = document.createElement('button');
+                btn.className = `w-10 h-10 flex items-center justify-center rounded-md hover:bg-white/10 transition-colors relative group`;
+                btn.innerHTML = `
+                    <i data-lucide="${config.icon}" class="w-6 h-6 ${config.color}"></i>
+                    <div class="absolute bottom-0 w-4 h-0.5 bg-blue-400 rounded-full"></div>
+                `;
+                btn.onclick = () => focusWindow(win.id);
+                container.appendChild(btn);
+            });
+            lucide.createIcons();
+        }
+
+        // --- App Layouts ---
+        function getAppHTML(title) {
+            switch(title) {
+                case 'Notepad':
+                    return `<textarea class="w-full h-full p-4 bg-transparent outline-none resize-none font-mono text-sm" spellcheck="false">Welcome to Notepad!\n\nThis is a simple text area inside the OS simulator.</textarea>`;
+                case 'File Explorer':
+                    return `
+                        <div class="flex flex-col h-full">
+                            <div class="flex items-center gap-4 p-2 bg-white/5 border-b border-white/10 text-xs text-gray-400">
+                                <span>Local Disk (C:) > Users > Guest</span>
+                            </div>
+                            <div class="p-4 grid grid-cols-4 gap-4">
+                                <div class="flex flex-col items-center gap-1 group cursor-pointer hover:bg-white/5 p-2 rounded">
+                                    <i data-lucide="folder" class="w-10 h-10 text-blue-400"></i>
+                                    <span class="text-[10px]">Documents</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1 group cursor-pointer hover:bg-white/5 p-2 rounded">
+                                    <i data-lucide="folder" class="w-10 h-10 text-green-400"></i>
+                                    <span class="text-[10px]">Downloads</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1 group cursor-pointer hover:bg-white/5 p-2 rounded">
+                                    <i data-lucide="image" class="w-10 h-10 text-purple-400"></i>
+                                    <span class="text-[10px]">Photos</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                case 'Terminal':
+                    return `
+                        <div class="p-4 font-mono text-xs h-full flex flex-col term-scroll">
+                            <div class="terminal-history mb-2">Microsoft Windows [Version 10.0.19045.3803]<br>(c) Microsoft Corporation. All rights reserved.</div>
+                            <div class="flex">
+                                <span class="mr-2 text-green-400">C:\\Users\\Guest&gt;</span>
+                                <input class="terminal-input bg-transparent border-none outline-none flex-1 p-0 m-0" autofocus>
+                            </div>
+                        </div>
+                    `;
+                case 'Calculator':
+                    return `
+                        <div class="p-6 h-full flex flex-col calc-app">
+                            <div class="bg-black/20 p-4 rounded mb-4 text-right">
+                                <div class="text-[10px] text-gray-500 h-4 calc-history"></div>
+                                <div class="text-2xl font-bold truncate calc-display">0</div>
+                            </div>
+                            <div class="grid grid-cols-4 gap-2 flex-1 calc-grid">
+                                <button class="p-2 bg-white/5 hover:bg-white/10 rounded">7</button>
+                                <button class="p-2 bg-white/5 hover:bg-white/10 rounded">8</button>
+                                <button class="p-2 bg-white/5 hover:bg-white/10 rounded">9</button>
+                                <button class="p-2 bg-blue-600/80 hover:bg-blue-600 rounded">/</button>
+                                <button class="p-2 bg-white/5 hover:bg-white/10 rounded">4</button>
+                                <button class="p-2 bg-white/5 hover:bg-white/10 rounded">5</button>
+                                <button class="p-2 bg-white/5 hover:bg-white/10 rounded">6</button>
+                                <button class="p-2 bg-blue-600/80 hover:bg-blue-600 rounded">*</button>
+                                <button class="p-2 bg-white/5 hover:bg-white/10 rounded">1</button>
+                                <button class="p-2 bg-white/5 hover:bg-white/10 rounded">2</button>
+                                <button class="p-2 bg-white/5 hover:bg-white/10 rounded">3</button>
+                                <button class="p-2 bg-blue-600/80 hover:bg-blue-600 rounded">-</button>
+                                <button class="p-2 bg-red-600/20 text-red-400 hover:bg-red-600/40 rounded">C</button>
+                                <button class="p-2 bg-white/5 hover:bg-white/10 rounded">0</button>
+                                <button class="p-2 bg-blue-600 hover:bg-blue-500 rounded">=</button>
+                                <button class="p-2 bg-blue-600/80 hover:bg-blue-600 rounded">+</button>
+                            </div>
+                        </div>
+                    `;
+                case 'Settings':
+                    return `
+                        <div class="p-8">
+                            <h2 class="text-xl font-bold mb-6">System Settings</h2>
+                            <div class="space-y-4">
+                                <div class="p-4 bg-white/5 border border-white/10 rounded flex justify-between items-center">
+                                    <div><p class="font-medium">Background Image</p><p class="text-xs text-gray-500">Change desktop wallpaper</p></div>
+                                    <button class="bg-blue-600 px-3 py-1 text-xs rounded hover:bg-blue-500">Browse</button>
+                                </div>
+                                <div class="p-4 bg-white/5 border border-white/10 rounded flex justify-between items-center">
+                                    <div><p class="font-medium">System Version</p><p class="text-xs text-gray-500">v1.2.0 Web Build</p></div>
+                                    <span class="text-xs text-green-400">Up to date</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                default: return '';
+            }
+        }
+
+        // --- Terminal Logic ---
+        function initTerminal(winEl) {
+            const input = winEl.querySelector('.terminal-input');
+            const history = winEl.querySelector('.terminal-history');
+            input.onkeydown = (e) => {
+                if (e.key === 'Enter') {
+                    const cmd = input.value.trim().toLowerCase();
+                    let res = '';
+                    if (cmd === 'help') res = 'Available: help, date, clear, version, whoami';
+                    else if (cmd === 'date') res = new Date().toLocaleString();
+                    else if (cmd === 'version') res = 'Windows Web Sim v1.2.0';
+                    else if (cmd === 'whoami') res = 'web_user_guest';
+                    else if (cmd === 'clear') { history.innerHTML = ''; input.value = ''; return; }
+                    else if (cmd) res = `'${cmd}' is not recognized as a command.`;
+                    
+                    history.innerHTML += `<div><span class="text-green-400">C:\\Users\\Guest&gt;</span> ${input.value}</div>`;
+                    if (res) history.innerHTML += `<div>${res}</div>`;
+                    input.value = '';
+                    winEl.querySelector('.app-content').scrollTop = winEl.querySelector('.app-content').scrollHeight;
+                }
+            };
+        }
+
+        // --- Calculator Logic ---
+        function initCalculator(winEl) {
+            const display = winEl.querySelector('.calc-display');
+            const history = winEl.querySelector('.calc-history');
+            let current = '0';
+            let prev = null;
+            let op = null;
+            let wait = false;
+
+            winEl.querySelectorAll('.calc-grid button').forEach(btn => {
+                btn.onclick = () => {
+                    const val = btn.innerText;
+                    if (!isNaN(val)) {
+                        if (wait) { current = val; wait = false; }
+                        else current = current === '0' ? val : current + val;
+                        display.innerText = current;
+                    } else if (val === 'C') {
+                        current = '0'; prev = null; op = null; wait = false;
+                        display.innerText = '0'; history.innerText = '';
+                    } else if (val === '=') {
+                        if (op && prev !== null) {
+                            const res = calc(prev, parseFloat(current), op);
+                            display.innerText = res;
+                            current = res.toString();
+                            prev = null; op = null; wait = true;
+                            history.innerText = '';
+                        }
+                    } else {
+                        if (prev === null) prev = parseFloat(current);
+                        else if (op) prev = calc(prev, parseFloat(current), op);
+                        op = val;
+                        wait = true;
+                        history.innerText = `${prev} ${op}`;
+                        display.innerText = prev;
+                    }
+                };
+            });
+
+            function calc(a, b, o) {
+                if (o === '+') return a + b;
+                if (o === '-') return a - b;
+                if (o === '*') return a * b;
+                if (o === '/') return b !== 0 ? a / b : 'Error';
+                return b;
+            }
+        }
+
+        // Initial launch
+        window.onload = () => {
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
